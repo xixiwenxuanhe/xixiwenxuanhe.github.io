@@ -3,8 +3,20 @@ document.addEventListener('DOMContentLoaded', function() {
   // 导航栏滚动效果
   const navbar = document.querySelector('.navbar');
   const backToTop = document.querySelector('.back-to-top');
+  const scrollProgressBar = document.querySelector('.scroll-progress-bar');
+  
+  // 滚动进度条更新函数
+  function updateScrollProgress() {
+    const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (windowScroll / height) * 100;
+    scrollProgressBar.style.width = scrolled + '%';
+  }
   
   window.addEventListener('scroll', function() {
+    // 更新滚动进度条
+    updateScrollProgress();
+    
     // 导航栏滚动效果
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
@@ -19,6 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
       backToTop.classList.remove('show');
     }
   });
+  
+  // 初始化滚动进度条
+  updateScrollProgress();
   
   // 回到顶部按钮点击事件
   backToTop.addEventListener('click', function() {

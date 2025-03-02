@@ -159,4 +159,55 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // 监听滚动事件
   window.addEventListener('scroll', animateOnScroll);
+  
+  // 高亮当前活动的导航链接
+  function setActiveNavLink() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('current');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('current');
+        }
+      });
+    });
+  }
+  
+  // 调用函数
+  setActiveNavLink();
+  
+  // 导航栏滚动效果增强
+  let lastScrollTop = 0;
+  
+  window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > lastScrollTop) {
+      // 向下滚动
+      navbar.style.transform = 'translateY(-100%)';
+    } else {
+      // 向上滚动
+      navbar.style.transform = 'translateY(0)';
+    }
+    
+    // 当滚动到顶部时，始终显示导航栏
+    if (scrollTop <= 50) {
+      navbar.style.transform = 'translateY(0)';
+    }
+    
+    lastScrollTop = scrollTop;
+  });
 });

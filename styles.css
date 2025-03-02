@@ -14,6 +14,11 @@
   --light-color: #ecf0f1;
   --text-color: #333;
   
+  /* RGB版本的颜色变量 - 用于透明度设置 */
+  --primary-color-rgb: 52, 152, 219;
+  --secondary-color-rgb: 46, 204, 113;
+  --accent-color-rgb: 231, 76, 60;
+  
   /* 背景颜色变量 - 优化透明度 */
   --bg-light-blue: rgba(52, 152, 219, 0.25);
   --bg-light-green: rgba(46, 204, 113, 0.25);
@@ -34,6 +39,13 @@
   --border-radius-sm: 5px;
   --border-radius-md: 10px;
   --border-radius-lg: 30px;
+  
+  /* 纹理变量 */
+  --texture-opacity: 0.1;
+  --texture-noise-url: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeBlend mode='screen'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+  --texture-grid-url: url('https://www.transparenttextures.com/patterns/cubes.png');
+  --texture-dots-url: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000' fill-opacity='0.05'%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3Ccircle cx='30' cy='10' r='1'/%3E%3Ccircle cx='50' cy='10' r='1'/%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3Ccircle cx='40' cy='20' r='1'/%3E%3Ccircle cx='10' cy='30' r='1'/%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3Ccircle cx='50' cy='30' r='1'/%3E%3Ccircle cx='20' cy='40' r='1'/%3E%3Ccircle cx='40' cy='40' r='1'/%3E%3Ccircle cx='10' cy='50' r='1'/%3E%3Ccircle cx='30' cy='50' r='1'/%3E%3Ccircle cx='50' cy='50' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  --texture-lines-url: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L40 20' stroke='%23000' stroke-opacity='0.05' stroke-width='1'/%3E%3Cpath d='M20 0 L20 40' stroke='%23000' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");
 }
 
 /* 基础样式 */
@@ -43,12 +55,55 @@ html {
   scroll-padding-top: 80px; /* 导航栏高度 + 额外空间 */
 }
 
+/* 添加全局纹理背景 */
 body {
   font-family: 'Noto Sans SC', sans-serif;
   color: var(--text-color);
   line-height: 1.6;
   background-color: var(--light-color);
   overflow-x: hidden;
+  position: relative;
+}
+
+/* 添加全局纹理层 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--texture-noise-url);
+  opacity: 0.04;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 添加第二层全局纹理 */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--texture-dots-url);
+  opacity: 0.05;
+  z-index: -1;
+  pointer-events: none;
+  animation: textureShift 120s linear infinite;
+}
+
+/* 添加纹理动画 */
+@keyframes textureShift {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
+}
+
+@keyframes textureWave {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+  100% { transform: translateY(0); }
 }
 
 a {
@@ -86,6 +141,26 @@ img {
   margin: 0 0.5rem;
   border: none;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 添加按钮纹理效果 */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--texture-noise-url);
+  opacity: 0.1;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover::before {
+  opacity: 0.2;
 }
 
 .btn-primary {
@@ -129,6 +204,20 @@ img {
   overflow: hidden;
 }
 
+/* 给每个部分添加纹理背景 */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--texture-grid-url);
+  opacity: 0.1;
+  z-index: 0;
+  animation: textureShift 80s linear infinite;
+}
+
 .section .container {
   position: relative;
   z-index: 2;
@@ -147,6 +236,21 @@ img {
   display: inline-block;
   padding-bottom: 0.5rem;
   position: relative;
+}
+
+/* 添加标题装饰纹理 */
+.section-title h2::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  background-image: var(--texture-dots-url);
+  opacity: 0.07;
+  z-index: -1;
+  border-radius: var(--border-radius-sm);
+  animation: textureWave 8s ease-in-out infinite;
 }
 
 .section-title h2::after {
@@ -172,12 +276,47 @@ img {
   overflow: hidden; 
 }
 
-/* 各部分背景色 */
-.about { background: var(--bg-light-blue); }
-.education { background: var(--bg-light-green); }
-.skills { background: var(--bg-light-blue); }
-.competitions { background: var(--bg-light-orange); }
-.research { background: var(--bg-light-purple); }
+/* 各部分背景色及特定纹理 */
+.about { 
+  background: var(--bg-light-blue); 
+}
+.about::before {
+  background-image: var(--texture-dots-url);
+  opacity: 0.06;
+}
+
+.education { 
+  background: var(--bg-light-green); 
+}
+.education::before {
+  background-image: var(--texture-lines-url);
+  opacity: 0.07;
+}
+
+.skills { 
+  background: var(--bg-light-blue); 
+}
+.skills::before {
+  background-image: var(--texture-grid-url);
+  opacity: 0.06;
+}
+
+.competitions { 
+  background: var(--bg-light-orange); 
+}
+.competitions::before {
+  background-image: var(--texture-dots-url);
+  background-size: 40px 40px;
+  opacity: 0.05;
+}
+
+.research { 
+  background: var(--bg-light-purple); 
+}
+.research::before {
+  background-image: var(--texture-noise-url);
+  opacity: 0.07;
+}
 
 /* 内容容器统一样式 */
 .about > .container,
@@ -191,11 +330,11 @@ img {
 }
 
 /* 中央白色覆盖 - 简化统一属性 */
-.about::before,
-.education::before,
-.skills::before,
-.competitions::before,
-.research::before {
+.about::after,
+.education::after,
+.skills::after,
+.competitions::after,
+.research::after {
   content: '';
   position: absolute;
   width: 70%;
@@ -204,14 +343,13 @@ img {
   left: 15%;
   background: rgba(255, 255, 255, 0.85);
   z-index: 0;
+  background-image: var(--texture-dots-url);
+  background-blend-mode: overlay;
+  opacity: 0.95;
 }
 
-/* 部分底部过渡 - 统一样式 */
-.about::after,
-.education::after,
-.skills::after,
-.competitions::after,
-.research::after {
+/* 部分底部过渡 */
+.section::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -719,21 +857,59 @@ img {
   100% { transform: translateX(-50%) scale(1); opacity: 1; }
 }
 
-/* 首页头部 */
+/* 首页头部 - 添加纹理 */
 .hero {
   height: 100vh;
-  background: linear-gradient(135deg, rgba(52, 152, 219, 0.8), rgba(46, 204, 113, 0.8)), url('https://source.unsplash.com/random/1920x1080/?abstract') no-repeat center center/cover;
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.6), rgba(46, 204, 113, 0.6)), url('https://source.unsplash.com/random/1920x1080/?abstract') no-repeat center center/cover;
   color: white;
   display: flex;
   align-items: center;
   text-align: center;
   min-height: calc(100vh - 70px);
   padding-top: 70px;
+  position: relative;
+}
+
+/* 添加Hero区域纹理 */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* 添加暗色透明覆盖层 */
+  background-image: var(--texture-noise-url);
+  opacity: 0.15;
+  z-index: 0;
+  mix-blend-mode: overlay;
+}
+
+/* 添加Hero区域动态纹理 */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3Ccircle cx='30' cy='10' r='0.5'/%3E%3Ccircle cx='50' cy='10' r='1.5'/%3E%3Ccircle cx='70' cy='10' r='1'/%3E%3Ccircle cx='90' cy='10' r='0.5'/%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3Ccircle cx='40' cy='20' r='0.5'/%3E%3Ccircle cx='60' cy='20' r='1.5'/%3E%3Ccircle cx='80' cy='20' r='1'/%3E%3Ccircle cx='10' cy='30' r='0.5'/%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3Ccircle cx='50' cy='30' r='0.5'/%3E%3Ccircle cx='70' cy='30' r='1.5'/%3E%3Ccircle cx='90' cy='30' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  z-index: 0;
+  opacity: 0.1;
+  animation: textureShift 60s linear infinite;
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 95%;
   margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .hero h1 {
@@ -832,7 +1008,7 @@ img {
 .timeline-item:nth-child(odd)::after { right: -12px; }
 .timeline-item:nth-child(even)::after { left: -12px; }
 
-/* 卡片统一样式 */
+/* 卡片统一样式 - 添加纹理 */
 .timeline-content,
 .skill-category,
 .competition-card,
@@ -848,6 +1024,23 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* 添加卡片纹理 */
+.timeline-content::after,
+.skill-category::after,
+.competition-card::after,
+.research-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--texture-noise-url);
+  opacity: 0.05;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .timeline-content:hover,
 .skill-category:hover,
 .competition-card:hover,
@@ -855,6 +1048,13 @@ img {
   background: rgba(255, 255, 255, 0.8);
   box-shadow: var(--box-shadow-md);
   transform: translateY(-3px);
+}
+
+.timeline-content:hover::after,
+.skill-category:hover::after,
+.competition-card:hover::after,
+.research-card:hover::after {
+  opacity: 0.08;
 }
 
 /* 卡片顶部动画横条 */
@@ -1008,22 +1208,60 @@ img {
   margin-bottom: 1rem;
 }
 
-/* 联系方式部分 */
+/* 联系方式部分 - 添加纹理 */
 .contact {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.6), rgba(var(--secondary-color-rgb), 0.6));
   color: white;
+  position: relative;
+}
+
+/* 添加联系区域纹理 */
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* 添加暗色透明覆盖层 */
+  background-image: var(--texture-grid-url);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.contact::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 L60 60 M60 0 L0 60' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");
+  opacity: 0.1;
+  z-index: 0;
+  animation: textureShift 40s linear infinite;
 }
 
 .contact-container {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 2rem;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .contact-info,
 .contact-form {
   flex: 1;
   min-width: 300px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
 }
 
 .contact-info h3,
@@ -1103,16 +1341,45 @@ textarea.form-control {
   min-height: 150px;
 }
 
-/* 页脚 */
+/* 页脚 - 添加纹理 */
 .footer {
   background-color: var(--dark-color);
   color: white;
   text-align: center;
   padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 添加页脚纹理 */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--texture-noise-url);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' fill='%23ffffff' fill-opacity='0.05' x='5' y='5'/%3E%3Crect width='1' height='1' fill='%23ffffff' fill-opacity='0.05' x='15' y='15'/%3E%3C/svg%3E");
+  opacity: 0.2;
+  z-index: 0;
 }
 
 .footer p {
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .back-to-top {
@@ -1522,4 +1789,27 @@ body.is-scrolling .navbar::after {
   opacity: 0.8;
   height: 3px;
   box-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+}
+
+/* 添加通用纹理动画 */
+@keyframes texturePulse {
+  0% { opacity: 0.05; }
+  50% { opacity: 0.1; }
+  100% { opacity: 0.05; }
+}
+
+/* 添加纹理呼吸效果 */
+.section::before {
+  animation: texturePulse 10s ease-in-out infinite, textureShift 80s linear infinite;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form .form-group {
+  display: flex;
+  flex-direction: column;
 }

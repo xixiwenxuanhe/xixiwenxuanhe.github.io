@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的个人简历</title>
+  <!-- 引入 Google 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- 引入Font Awesome图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- 引入自定义CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">我的简历</a>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="#home" class="nav-link">首页</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link">关于我</a></li>
+        <li class="nav-item"><a href="#education" class="nav-link">教育经历</a></li>
+        <li class="nav-item"><a href="#skills" class="nav-link">专业技能</a></li>
+        <li class="nav-item"><a href="#competitions" class="nav-link">竞赛经历</a></li>
+        <li class="nav-item"><a href="#research" class="nav-link">科学研究</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link">联系方式</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 首页 -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>您好，我是小明</h1>
+        <p>计算机科学与技术专业 | 数据分析爱好者 | 创新研究者</p>
+        <div>
+          <a href="#about" class="btn btn-primary">了解更多</a>
+          <a href="#contact" class="btn btn-outline">联系我</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于我 -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="section-title">
+        <h2>关于我</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-img">
+          <img src="https://source.unsplash.com/random/600x600/?portrait" alt="个人照片">
+        </div>
+        <div class="about-text">
+          <h3>个人简介</h3>
+          <p>我是一名就读于某知名大学计算机科学与技术专业的大三学生，对人工智能、数据分析和软件开发充满热情。在学习期间，我积极参与各类科研项目和竞赛活动，不断提升自己的专业能力和团队协作精神。</p>
+          <p>我善于学习新技术，具有较强的问题解决能力和创新思维。在校期间，我参与了多个研究项目，发表了学术论文，并在多项竞赛中获得奖项。我期望能够将所学知识应用于实际问题，为社会创造价值。</p>
+          <p>在课余时间，我喜欢阅读技术书籍，参与开源项目，并通过各种途径不断拓展自己的知识面。我相信持续学习和实践是成长的关键。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 教育经历 -->
+  <section id="education" class="section education">
+    <div class="container">
+      <div class="section-title">
+        <h2>教育经历</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>某知名大学</h3>
+            <h4>计算机科学与技术专业 - 本科</h4>
+            <div class="date">2021年9月 - 2025年6月</div>
+            <p>主修课程：数据结构与算法、计算机网络、操作系统、数据库系统、人工智能导论、机器学习、软件工程等。</p>
+            <p>GPA: 3.8/4.0，专业排名前10%</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>某重点高中</h3>
+            <h4>理科班</h4>
+            <div class="date">2018年9月 - 2021年6月</div>
+            <p>高中期间获得多项学科竞赛奖项，担任班级学习委员，组织多次学习活动。</p>
+            <p>高考成绩位列省前5%</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>国外交流项目</h3>
+            <h4>某国际知名大学</h4>
+            <div class="date">2023年7月 - 2023年8月</div>
+            <p>参加为期一个月的暑期交流项目，学习人工智能前沿技术，与国际学生共同完成项目实践。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 专业技能 -->
+  <section id="skills" class="section skills">
+    <div class="container">
+      <div class="section-title">
+        <h2>专业技能</h2>
+      </div>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>编程语言</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Python</span>
+              <span>90%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Java</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>C/C++</span>
+              <span>80%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 80%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>JavaScript</span>
+              <span>75%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 75%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>框架与工具</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>TensorFlow/PyTorch</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Spring/SpringBoot</span>
+              <span>80%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 80%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>React/Vue</span>
+              <span>75%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 75%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Docker/Kubernetes</span>
+              <span>70%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 70%;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>其他技能</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>数据分析</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>算法设计</span>
+              <span>80%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 80%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>英语能力</span>
+              <span>90%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>团队协作</span>
+              <span>95%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 95%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 竞赛经历 -->
+  <section id="competitions" class="section competitions">
+    <div class="container">
+      <div class="section-title">
+        <h2>竞赛经历</h2>
+      </div>
+      <div class="competitions-container">
+        <div class="competition-card">
+          <div class="competition-img">
+            <img src="https://source.unsplash.com/random/600x400/?competition" alt="竞赛图片">
+          </div>
+          <div class="competition-content">
+            <h3>全国大学生算法竞赛</h3>
+            <span class="date">2022年10月</span>
+            <span class="award">金奖</span>
+            <p>作为团队核心成员，负责算法设计与优化，成功解决了多个复杂问题，最终获得全国金奖。</p>
+          </div>
+        </div>
+        <div class="competition-card">
+          <div class="competition-img">
+            <img src="https://source.unsplash.com/random/600x400/?hackathon" alt="竞赛图片">
+          </div>
+          <div class="competition-content">
+            <h3>国际大学生黑客马拉松</h3>
+            <span class="date">2023年4月</span>
+            <span class="award">最佳创新奖</span>
+            <p>带领团队开发了一款基于AI的健康监测应用，获得评委一致好评，荣获最佳创新奖。</p>
+          </div>
+        </div>
+        <div class="competition-card">
+          <div class="competition-img">
+            <img src="https://source.unsplash.com/random/600x400/?ai-competition" alt="竞赛图片">
+          </div>
+          <div class="competition-content">
+            <h3>人工智能应用挑战赛</h3>
+            <span class="date">2023年7月</span>
+            <span class="award">二等奖</span>
+            <p>设计并实现了一个基于深度学习的图像识别系统，在实际场景中展现出优秀的性能，获得二等奖。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 科学研究 -->
+  <section id="research" class="section research">
+    <div class="container">
+      <div class="section-title">
+        <h2>科学研究</h2>
+      </div>
+      <div class="research-container">
+        <div class="research-card">
+          <h3>基于深度学习的医学图像分析</h3>
+          <span class="date">2022年3月 - 2022年12月</span>
+          <span class="role">主要研究者</span>
+          <p>开发了一种新型的卷积神经网络模型，用于医学图像中的病变检测，提高了检测准确率15%。研究成果发表在国内核心期刊上。</p>
+        </div>
+        <div class="research-card">
+          <h3>智能交通系统优化研究</h3>
+          <span class="date">2023年2月 - 至今</span>
+          <span class="role">研究助理</span>
+          <p>参与教授主导的智能交通系统研究项目，负责数据收集与分析，开发了一套基于强化学习的交通信号控制算法。</p>
+        </div>
+        <div class="research-card">
+          <h3>自然语言处理在法律文本分析中的应用</h3>
+          <span class="date">2023年5月 - 至今</span>
+          <span class="role">合作研究者</span>
+          <p>与法学院合作，研究NLP技术在法律文本分析中的应用，开发了一个自动提取法律要点的系统，目前正在撰写相关论文。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系方式 -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>联系方式</h2>
+      </div>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>个人信息</h3>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:example@example.com">example@example.com</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+86 123 4567 8901</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>北京市海淀区</span>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+          </div>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-weixin"></i></a>
+            <a href="#"><i class="fab fa-qq"></i></a>
+            <a href="#"><i class="fab fa-weibo"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h3>给我留言</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="您的姓名" required>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="您的邮箱" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="主题">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" placeholder="您的留言" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-submit">发送留言</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 小明的个人简历. All Rights Reserved.</p>
+      <p>感谢您的访问！</p>
+    </div>
+  </footer>
+
+  <!-- 回到顶部按钮 -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- 引入JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

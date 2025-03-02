@@ -13,6 +13,14 @@
   --light-color: #ecf0f1;
   --text-color: #333;
   --transition: all 0.3s ease;
+  
+  /* 增加背景颜色的强度，尤其是左侧区域 */
+  --bg-light-blue: rgba(52, 152, 219, 0.2);
+  --bg-light-green: rgba(46, 204, 113, 0.2);
+  --bg-light-orange: rgba(230, 126, 34, 0.2);
+  --bg-light-purple: rgba(142, 68, 173, 0.2);
+  --bg-light-red: rgba(231, 76, 60, 0.2);
+  --bg-light-yellow: rgba(241, 196, 15, 0.2);
 }
 
 html {
@@ -47,12 +55,32 @@ a:hover {
 
 .section {
   padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 0;
 }
 
 .section-title {
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
+  z-index: 2;
 }
 
 .section-title h2 {
@@ -73,6 +101,209 @@ a:hover {
   height: 3px;
   background: var(--primary-color);
   background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+  z-index: -1;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* 各个部分的背景色 - 使用更加明显的渐变和颜色 */
+.about, .education, .skills, .competitions, .research {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+}
+
+/* 为确保内容正确居中 */
+.about > .container, .education > .container, .skills > .container, .competitions > .container, .research > .container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.about {
+  background: linear-gradient(to right, var(--bg-light-blue), rgba(255, 255, 255, 0.7) 85%);
+}
+
+.education {
+  background: linear-gradient(to right, var(--bg-light-green), rgba(255, 255, 255, 0.7) 85%);
+}
+
+.skills {
+  background: linear-gradient(to right, var(--bg-light-blue), rgba(255, 255, 255, 0.7) 85%);
+}
+
+.competitions {
+  background: linear-gradient(to right, var(--bg-light-orange), rgba(255, 255, 255, 0.7) 85%);
+}
+
+.research {
+  background: linear-gradient(to right, var(--bg-light-purple), rgba(255, 255, 255, 0.7) 85%);
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--bg-light-blue) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 20%;
+  left: 10%;
+  opacity: 0.6;
+  animation: float 15s ease-in-out infinite;
+  z-index: -1;
+}
+
+.about::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg-light-green));
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.education::before {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, var(--bg-light-green) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 30%;
+  right: 10%;
+  opacity: 0.6;
+  animation: float 10s ease-in-out infinite;
+  z-index: -1;
+}
+
+.education::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg-light-blue));
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.skills::before {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, var(--bg-light-blue) 0%, transparent 70%);
+  border-radius: 50%;
+  bottom: 20%;
+  left: 15%;
+  opacity: 0.6;
+  animation: float 12s ease-in-out infinite;
+  z-index: -1;
+}
+
+.skills::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg-light-orange));
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.competitions::before {
+  content: '';
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, var(--bg-light-orange) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 15%;
+  left: 20%;
+  opacity: 0.6;
+  animation: float 14s ease-in-out infinite reverse;
+  z-index: -1;
+}
+
+.competitions::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg-light-purple));
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.research::before {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, var(--bg-light-purple) 0%, transparent 70%);
+  border-radius: 50%;
+  bottom: 30%;
+  right: 15%;
+  opacity: 0.6;
+  animation: float 16s ease-in-out infinite;
+  z-index: -1;
+}
+
+.research::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg-light-blue));
+  z-index: 1;
+  opacity: 0.8;
+}
+
+/* 增强卡片的层次感，但保持轻盈感 */
+.timeline-content,
+.skill-category,
+.competition-card,
+.research-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.timeline-content:hover,
+.skill-category:hover,
+.competition-card:hover,
+.research-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  transform: translateY(-3px);
 }
 
 /* 导航栏样式优化 */
@@ -376,10 +607,6 @@ a:hover {
 }
 
 /* 关于我 */
-.about {
-  background-color: white;
-}
-
 .about-content {
   display: flex;
   flex-wrap: wrap;
@@ -419,10 +646,6 @@ a:hover {
 }
 
 /* 教育经历 */
-.education {
-  background-color: var(--light-color);
-}
-
 .timeline {
   position: relative;
   max-width: 800px;
@@ -507,10 +730,6 @@ a:hover {
 }
 
 /* 专业技能 */
-.skills {
-  background-color: white;
-}
-
 .skills-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -566,10 +785,6 @@ a:hover {
 }
 
 /* 竞赛经历 */
-.competitions {
-  background-color: var(--light-color);
-}
-
 .competitions-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -632,10 +847,6 @@ a:hover {
 }
 
 /* 科学研究 */
-.research {
-  background-color: white;
-}
-
 .research-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -1030,4 +1241,28 @@ textarea.form-control {
 
 .research-card::before {
   background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+}
+
+/* 添加一些额外的装饰元素，增强视觉效果 */
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.05), transparent);
+  z-index: 5;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
 }
